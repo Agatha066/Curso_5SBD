@@ -1,0 +1,6 @@
+Script para retornar os alunos matriculados na materia '5SBD'
+
+select * from aluno al
+inner join tb_aluno_turma at1 on (at1.idAluno = al.id)
+inner join turma tm on (at1.idTurma = tm.id)
+where tm.nome = '5SBD'
