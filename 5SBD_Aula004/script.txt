@@ -1,0 +1,23 @@
+--- script para retornar turmas que estao canceladas pelo aluno
+
+SELECT * FROM aluno al
+inner join aluno_turma at1 on (at1.idAluno = al.id)
+inner join turma tm on (at1.idTurma = tm.id)
+inner join materia_cancelada mc on (at1.materia_cancelada = 0)
+WHERE mc.idAluno = al.id  
+ORDER BY mc.id ASC
+
+--- script para retornar turmas que NÃO estao canceladas pelo aluno
+
+SELECT *
+FROM aluno_turma at1
+INNER JOIN turma tm ON (at1.idTurma = tm.id)
+WHERE at1.materia_cancelada = 0
+
+==============
+
+SELECT aluno.nome, turma.*
+FROM aluno
+INNER JOIN aluno_turma ON aluno_turma.idAluno = aluno.id
+INNER JOIN turma ON turma.id = aluno_turma.idTurma
+WHERE aluno_turma.materia_cancelada = 0
