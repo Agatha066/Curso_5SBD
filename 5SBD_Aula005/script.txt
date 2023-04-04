@@ -1,0 +1,7 @@
+script para exibir os alunos matriculados por turma.
+
+SELECT aluno.nome, turma.nome, matricula.*
+FROM aluno
+INNER JOIN matricula ON matricula.idAluno = aluno.id
+INNER JOIN turma ON turma.id = matricula.idTurma
+WHERE matricula.status = 0
