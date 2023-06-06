@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Teste.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Clientes</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                <a asp-action="Create">Novo Cliente <i class="fa fa-plus-square fa-lg"></i></a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar <i class="fa fa-marker fa-lg"></i></a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhe <i class="fa fa-info fa lg"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar <i class="fa fa-trash-alt fa lg"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
