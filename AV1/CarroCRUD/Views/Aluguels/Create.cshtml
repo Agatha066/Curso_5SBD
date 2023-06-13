@@ -1,0 +1,76 @@
+﻿@model CarroCRUD.Models.Aluguel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Aluguel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdCliente" class="control-label"></label>
+                <select asp-for="IdCliente" class="form-control">
+                    <option value="">Selecione um cliente</option>
+                    @foreach (var cliente in ViewBag.Clientes)
+                    {
+                        <option value="@cliente.Id">@cliente.Nome</option>
+                    }
+                </select>
+                <span asp-validation-for="IdCliente" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="IdCarro" class="control-label"></label>
+                <select asp-for="IdCarro" class="form-control" onchange="atualizarValor()">
+                    <option value="">Selecione um carro</option>
+                    @foreach (var carro in ViewBag.Carros)
+                    {
+                        <option value="@carro.Id">@carro.Modelo</option>
+                    }
+                </select>
+                <span asp-validation-for="IdCarro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ValorTotal" class="control-label"></label>
+                <input asp-for="ValorTotal" id="valorTotalInput" class="form-control" readonly />
+                <span asp-validation-for="ValorTotal" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DataAluguel" class="control-label"></label>
+                <input asp-for="DataAluguel" class="form-control" />
+                <span asp-validation-for="DataAluguel" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+            <script>
+                function atualizarValor() {
+                    var carroId = document.getElementById("IdCarro").value;
+                    var precosCarros = @Html.Raw(Json.Serialize(ViewBag.ValorTotal));
+                    var preco = precosCarros[carroId] || "";
+                    document.getElementById("valorTotalInput").value = preco.toFixed(2);
+                }
+            </script>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
