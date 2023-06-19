@@ -134,8 +134,7 @@ namespace CarroCRUD.Models
 
                             if (!pagamentoProcessado)
                             {
-                                // Se o pagamento não for bem-sucedido, você pode tratar o erro aqui
-                                // Por exemplo, lançar uma exceção, adicionar mensagens de erro ao ModelState, etc.
+                                // Se o pagamento não for bem-sucedido
                                 throw new Exception("Erro ao processar o pagamento");
                             }
                         }

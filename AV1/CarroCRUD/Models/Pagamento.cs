@@ -21,15 +21,10 @@ namespace CarroCRUD.Models
 
         public bool ProcessarPagamento(decimal valor)
             {
-                // Aqui você pode implementar a lógica real para processar o pagamento usando os detalhes fornecidos
-
-                // Exemplo fictício: Simular um pagamento bem-sucedido
                 if (!string.IsNullOrEmpty(NomeTitular) && !string.IsNullOrEmpty(NumeroCartao) && !string.IsNullOrEmpty(CVV))
                 {
                     return true;
                 }
-
-                // Caso contrário, o pagamento falhou
                 return false;
             }
 

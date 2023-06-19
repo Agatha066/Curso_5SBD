@@ -55,7 +55,7 @@ namespace CarroCRUD.Controllers
                 }
             }
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Clientes");
         }
     }
 }
