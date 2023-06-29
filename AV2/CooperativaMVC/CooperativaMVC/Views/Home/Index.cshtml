@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+<div class="container">
+    <h1 class="text-center">Welcome</h1>
+    <p class="text-center">Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <h3 class="text-center">Exemplo de exibição de informações Cooperativa de Crédito</h3>
+
+    @if (ViewBag.Contratos.Count == 0)
+    {
+        <p class="text-center text-danger">Nenhum contrato encontrado.</p>
+
+    }
+    else
+    {
+    <div class="row">
+        @foreach (var contrato in ViewBag.Contratos)
+        {
+            <div class="col-md-4">
+                <h3>Contrato ID: @contrato.Id</h3>
+                <p class="text-info">Valor do Contrato: @contrato.ValorContrato</p>
+                <p class="text-info">Data do Contrato: @contrato.DataContrato</p>
+                <p class="text-info">Prazo: @contrato.Prazo</p>
+                <p class="text-info">Taxa de Juros: @contrato.TaxaJuros</p>
+
+                <h4>Pagamentos:</h4>
+                @if (contrato.Pagamentos.Count == 0)
+                {
+                    <p class="text-danger">Nenhum pagamento feito.</p>
+                }
+                else
+                {
+                    @foreach (var pagamento in contrato.Pagamentos)
+                    {
+                        <p class="text-success">ID do Pagamento: @pagamento.Id</p>
+                        <p class="text-success">Valor do Pagamento: @pagamento.ValorPagamento</p>
+                        <p class="text-success">Data do Pagamento: @pagamento.DataPagamento</p>
+                    }
+                }
+
+                <h4>Vendedor:</h4>
+                <p class="text-primary">ID do Vendedor: @contrato.VendedorId</p>
+
+                <h4>Funcionário:</h4>
+                <p class="text-primary">ID do Funcionário: @contrato.FuncionarioId</p>
+
+                <h4>Empresa:</h4>
+                <p class="text-primary">ID da Empresa: @contrato.EmpresaId</p>
+
+                <h4>Bem Durável:</h4>
+                <p class="text-primary">ID do Bem Durável: @contrato.BemDuravelId</p>
+
+                <h4>Associado:</h4>
+                <p class="text-primary">ID do Associado: @contrato.AssociadoId</p>
+
+                <hr />
+            </div>
+        }
+    </div>
+    }
+</div>
